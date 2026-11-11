@@ -1,87 +1,96 @@
 # Clunkyard game kit
 
-Choose a language, clone its starter, build a robot and play a real local match. Bring the toolchain you already use. Each starter downloads only its selected SDK and a small shared engine; no account, container login or all-language builder is needed.
+Choose a language, clone its starter and play a real local match. Bring Node 20+ with npm and the language toolchain you already use. Each robot repository contains source and ordinary build metadata; the shared npm CLI maintains the downloader, SDK catalogue and match tooling.
 
 ```sh
-git clone https://github.com/clunkyard/starter-c.git
-cd starter-c
-make doctor
-make
-make match
-make replay
+npx --yes @clunkyard/cli@2 new javascript my-robot
+cd my-robot
+npx --yes @clunkyard/cli@2 doctor
+npx --yes @clunkyard/cli@2 build
+npx --yes @clunkyard/cli@2 match
+npx --yes @clunkyard/cli@2 replay
 ```
 
-Or clone this catalogue and run `node clunkyard.cjs new python my-robot`. `node clunkyard.cjs list` lists every offered language. JavaScript, Vane, Cadence and Glyph use the portable Node 20+ route. Current native assets are qualified for Linux x86-64/glibc 2.39+ (Ubuntu 24.04+ or WSL2 Ubuntu 24.04+); other native platforms need qualification. Compilers and interpreter packages are never downloaded automatically.
+Or clone a language starter below and run `make doctor`, `make`, `make match` and `make replay`. The CLI downloads only the pinned engine and selected SDK; no account, Docker login or all-language toolchain is required. Cached assets live in ignored `.clunkyard/` and are identified by their content hashes. Compatible CLI fixes arrive through npm without updating every robot repository.
+
+## npm packages
+
+- [`@clunkyard/cli`](https://www.npmjs.com/package/@clunkyard/cli): shared local builds, trials and replays. Use `@2` for compatible fixes; pin `@2.0.0` or set `CLUNKYARD='npx --yes @clunkyard/cli@2.0.0'` with Make for an exact tool version.
+- [`@clunkyard/sdk`](https://www.npmjs.com/package/@clunkyard/sdk): JavaScript/TypeScript API and WebAssembly core. Node starters pin `clunkyard@npm:@clunkyard/sdk@2.0.0` in ordinary package files; their existing `clunkyard` import works locally and online.
+- [`@clunkyard/git`](https://www.npmjs.com/package/@clunkyard/git): run `npm install --global @clunkyard/git@2.0.1`, then `clunkyard-git login` for your bot's [private Git remote](https://clunkyard.com/sdk/private-git).
+
+JavaScript, TypeScript and the Vane/Cadence/Glyph Node routes are portable. TypeScript uses an installed TypeScript 6+ compiler. Native SDK assets currently require Linux x86-64/glibc 2.39+ (Ubuntu 24.04+ or WSL2). Compilers are not downloaded automatically; each language guide links its official reference and prerequisites.
 
 ## Language starters
 
-|Language|Starter|Local requirements|
-|---|---|---|
-|javascript|[Clone or use template](https://github.com/clunkyard/starter-javascript)|node|
-|typescript|[Clone or use template](https://github.com/clunkyard/starter-typescript)|node, make, tsc|
-|python|[Clone or use template](https://github.com/clunkyard/starter-python)|node, make, python3|
-|c|[Clone or use template](https://github.com/clunkyard/starter-c)|node, make, cc|
-|cpp|[Clone or use template](https://github.com/clunkyard/starter-cpp)|node, make, c++|
-|go|[Clone or use template](https://github.com/clunkyard/starter-go)|node, make, go, cc|
-|rust|[Clone or use template](https://github.com/clunkyard/starter-rust)|node, make, rustc, cc|
-|hew|[Clone or use template](https://github.com/clunkyard/starter-hew)|node, make, hew, cc|
-|elixir|[Clone or use template](https://github.com/clunkyard/starter-elixir)|node, make, elixir, erlc, cc|
-|erlang|[Clone or use template](https://github.com/clunkyard/starter-erlang)|node, make, erl, erlc, cc|
-|csharp|[Clone or use template](https://github.com/clunkyard/starter-csharp)|node, make, dotnet|
-|fsharp|[Clone or use template](https://github.com/clunkyard/starter-fsharp)|node, make, dotnet|
-|java|[Clone or use template](https://github.com/clunkyard/starter-java)|node, make, javac, java|
-|kotlin|[Clone or use template](https://github.com/clunkyard/starter-kotlin)|node, make, kotlinc, java, javac|
-|scala|[Clone or use template](https://github.com/clunkyard/starter-scala)|node, make, scalac, java, javac|
-|clojure|[Clone or use template](https://github.com/clunkyard/starter-clojure)|node, make, java, javac|
-|dart|[Clone or use template](https://github.com/clunkyard/starter-dart)|node, make, dart|
-|swift|[Clone or use template](https://github.com/clunkyard/starter-swift)|node, make, swiftc|
-|zig|[Clone or use template](https://github.com/clunkyard/starter-zig)|node, make, zig|
-|haskell|[Clone or use template](https://github.com/clunkyard/starter-haskell)|node, make, ghc, cc|
-|ocaml|[Clone or use template](https://github.com/clunkyard/starter-ocaml)|node, make, ocamlopt, ocamlc, cc|
-|common-lisp|[Clone or use template](https://github.com/clunkyard/starter-common-lisp)|node, make, sbcl|
-|perl|[Clone or use template](https://github.com/clunkyard/starter-perl)|node, make, perl, cc|
-|lua|[Clone or use template](https://github.com/clunkyard/starter-lua)|node, make, lua5.4, cc, pkg-config|
-|ruby|[Clone or use template](https://github.com/clunkyard/starter-ruby)|node, make, ruby|
-|julia|[Clone or use template](https://github.com/clunkyard/starter-julia)|node, make, julia|
-|r|[Clone or use template](https://github.com/clunkyard/starter-r)|node, make, Rscript, R, cc|
-|php|[Clone or use template](https://github.com/clunkyard/starter-php)|node, make, php|
-|fortran|[Clone or use template](https://github.com/clunkyard/starter-fortran)|node, make, gfortran|
-|d|[Clone or use template](https://github.com/clunkyard/starter-d)|node, make, ldc2, cc|
-|ada|[Clone or use template](https://github.com/clunkyard/starter-ada)|node, make, gnatmake|
-|nim|[Clone or use template](https://github.com/clunkyard/starter-nim)|node, make, nim, cc|
-|mercury|[Clone or use template](https://github.com/clunkyard/starter-mercury)|node, make, mmc, cc|
-|pascal|[Clone or use template](https://github.com/clunkyard/starter-pascal)|node, make, fpc|
-|basic|[Clone or use template](https://github.com/clunkyard/starter-basic)|node, make, fbc|
-|cobol|[Clone or use template](https://github.com/clunkyard/starter-cobol)|node, make, cobc|
-|powershell|[Clone or use template](https://github.com/clunkyard/starter-powershell)|node, make, pwsh, dotnet|
-|prolog|[Clone or use template](https://github.com/clunkyard/starter-prolog)|node, make, swipl, swipl-ld|
-|chr|[Clone or use template](https://github.com/clunkyard/starter-chr)|node, make, swipl, swipl-ld|
-|clips|[Clone or use template](https://github.com/clunkyard/starter-clips)|node, make, python3|
-|minizinc|[Clone or use template](https://github.com/clunkyard/starter-minizinc)|node, make, python3, minizinc, fzn-gecode|
-|forth|[Clone or use template](https://github.com/clunkyard/starter-forth)|node, make, python3, gforth|
-|apl|[Clone or use template](https://github.com/clunkyard/starter-apl)|node, make, python3, apl|
-|bqn|[Clone or use template](https://github.com/clunkyard/starter-bqn)|node, make, bqn|
-|shell|[Clone or use template](https://github.com/clunkyard/starter-shell)|node, make, sh, jq|
-|wat|[Clone or use template](https://github.com/clunkyard/starter-wat)|node, make, wat2wasm|
-|assemblyscript-wasm|[Clone or use template](https://github.com/clunkyard/starter-assemblyscript-wasm)|node, make, asc|
-|c-wasm|[Clone or use template](https://github.com/clunkyard/starter-c-wasm)|node, make, clang, wasm-ld|
-|rust-wasm|[Clone or use template](https://github.com/clunkyard/starter-rust-wasm)|node, make, rustc|
-|zig-wasm|[Clone or use template](https://github.com/clunkyard/starter-zig-wasm)|node, make, zig|
-|vane|[Clone or use template](https://github.com/clunkyard/starter-vane)|node|
-|cadence|[Clone or use template](https://github.com/clunkyard/starter-cadence)|node|
-|glyph|[Clone or use template](https://github.com/clunkyard/starter-glyph)|node|
-|vane-wasm|[Clone or use template](https://github.com/clunkyard/starter-vane-wasm)|node, make, clang|
-|cadence-wasm|[Clone or use template](https://github.com/clunkyard/starter-cadence-wasm)|node, make, clang|
-|glyph-wasm|[Clone or use template](https://github.com/clunkyard/starter-glyph-wasm)|node, make, clang|
+| Language | Starter | Local tools beyond Node |
+| --- | --- | --- |
+| javascript | [Clone or use template](https://github.com/clunkyard/starter-javascript) | none |
+| typescript | [Clone or use template](https://github.com/clunkyard/starter-typescript) | tsc |
+| python | [Clone or use template](https://github.com/clunkyard/starter-python) | python3 |
+| c | [Clone or use template](https://github.com/clunkyard/starter-c) | cc |
+| cpp | [Clone or use template](https://github.com/clunkyard/starter-cpp) | c++ |
+| go | [Clone or use template](https://github.com/clunkyard/starter-go) | go, cc |
+| rust | [Clone or use template](https://github.com/clunkyard/starter-rust) | rustc, cc |
+| hew | [Clone or use template](https://github.com/clunkyard/starter-hew) | hew, cc |
+| elixir | [Clone or use template](https://github.com/clunkyard/starter-elixir) | elixir, erlc, cc |
+| erlang | [Clone or use template](https://github.com/clunkyard/starter-erlang) | erl, erlc, cc |
+| csharp | [Clone or use template](https://github.com/clunkyard/starter-csharp) | dotnet |
+| fsharp | [Clone or use template](https://github.com/clunkyard/starter-fsharp) | dotnet |
+| java | [Clone or use template](https://github.com/clunkyard/starter-java) | javac, java |
+| kotlin | [Clone or use template](https://github.com/clunkyard/starter-kotlin) | kotlinc, java, javac |
+| scala | [Clone or use template](https://github.com/clunkyard/starter-scala) | scalac, java, javac |
+| clojure | [Clone or use template](https://github.com/clunkyard/starter-clojure) | java, javac |
+| dart | [Clone or use template](https://github.com/clunkyard/starter-dart) | dart |
+| swift | [Clone or use template](https://github.com/clunkyard/starter-swift) | swiftc |
+| zig | [Clone or use template](https://github.com/clunkyard/starter-zig) | zig |
+| haskell | [Clone or use template](https://github.com/clunkyard/starter-haskell) | ghc, cc |
+| ocaml | [Clone or use template](https://github.com/clunkyard/starter-ocaml) | ocamlopt, ocamlc, cc |
+| common-lisp | [Clone or use template](https://github.com/clunkyard/starter-common-lisp) | sbcl |
+| perl | [Clone or use template](https://github.com/clunkyard/starter-perl) | perl, cc |
+| lua | [Clone or use template](https://github.com/clunkyard/starter-lua) | lua5.4, cc, pkg-config |
+| ruby | [Clone or use template](https://github.com/clunkyard/starter-ruby) | ruby |
+| julia | [Clone or use template](https://github.com/clunkyard/starter-julia) | julia |
+| r | [Clone or use template](https://github.com/clunkyard/starter-r) | Rscript, R, cc |
+| php | [Clone or use template](https://github.com/clunkyard/starter-php) | php |
+| fortran | [Clone or use template](https://github.com/clunkyard/starter-fortran) | gfortran |
+| d | [Clone or use template](https://github.com/clunkyard/starter-d) | ldc2, cc |
+| ada | [Clone or use template](https://github.com/clunkyard/starter-ada) | gnatmake |
+| nim | [Clone or use template](https://github.com/clunkyard/starter-nim) | nim, cc |
+| mercury | [Clone or use template](https://github.com/clunkyard/starter-mercury) | mmc, cc |
+| pascal | [Clone or use template](https://github.com/clunkyard/starter-pascal) | fpc |
+| basic | [Clone or use template](https://github.com/clunkyard/starter-basic) | fbc |
+| cobol | [Clone or use template](https://github.com/clunkyard/starter-cobol) | cobc |
+| powershell | [Clone or use template](https://github.com/clunkyard/starter-powershell) | pwsh, dotnet |
+| prolog | [Clone or use template](https://github.com/clunkyard/starter-prolog) | swipl, swipl-ld |
+| chr | [Clone or use template](https://github.com/clunkyard/starter-chr) | swipl, swipl-ld |
+| clips | [Clone or use template](https://github.com/clunkyard/starter-clips) | python3 |
+| minizinc | [Clone or use template](https://github.com/clunkyard/starter-minizinc) | python3, minizinc, fzn-gecode |
+| forth | [Clone or use template](https://github.com/clunkyard/starter-forth) | python3, gforth |
+| apl | [Clone or use template](https://github.com/clunkyard/starter-apl) | python3, apl |
+| bqn | [Clone or use template](https://github.com/clunkyard/starter-bqn) | bqn |
+| shell | [Clone or use template](https://github.com/clunkyard/starter-shell) | sh, jq |
+| wat | [Clone or use template](https://github.com/clunkyard/starter-wat) | wat2wasm |
+| assemblyscript-wasm | [Clone or use template](https://github.com/clunkyard/starter-assemblyscript-wasm) | asc |
+| c-wasm | [Clone or use template](https://github.com/clunkyard/starter-c-wasm) | clang, wasm-ld |
+| rust-wasm | [Clone or use template](https://github.com/clunkyard/starter-rust-wasm) | rustc |
+| zig-wasm | [Clone or use template](https://github.com/clunkyard/starter-zig-wasm) | zig |
+| vane | [Clone or use template](https://github.com/clunkyard/starter-vane) | none |
+| cadence | [Clone or use template](https://github.com/clunkyard/starter-cadence) | none |
+| glyph | [Clone or use template](https://github.com/clunkyard/starter-glyph) | none |
+| vane-wasm | [Clone or use template](https://github.com/clunkyard/starter-vane-wasm) | clang |
+| cadence-wasm | [Clone or use template](https://github.com/clunkyard/starter-cadence-wasm) | clang |
+| glyph-wasm | [Clone or use template](https://github.com/clunkyard/starter-glyph-wasm) | clang |
 
-## Releases and reproducibility
+## Repeat trials and play online
 
-Release [v2.0.0-kit.2](https://github.com/clunkyard/game-kit/releases/tag/v2.0.0-kit.2) pins SDK 2.0.0, the engine, each selected binding and checksums. Download the starter archive if you prefer not to clone. Generated downloads go under ignored `.clunkyard/`; keep source files, manifests and your own tests in Git. Compiler-sensitive bindings rebuild against the compiler you installed. Public SDK distribution is independent of your private robot source.
+```sh
+npx --yes @clunkyard/cli@2 match 42 2d classic
+npx --yes @clunkyard/cli@2 match 77 3d zero-g
+```
 
-## Move from local trials to the arena
+Keep a baseline commit and compare several seeds, contacts, battery, aim and hit rates in the replays. Use hosted trials to check arena budgets before entering tournaments. Create a bot at [clunkyard.com](https://clunkyard.com), use its private Git remote or connect your own GitHub repository in My bots. Accepted pushes save a revision and request its hosted build. [WebDAV](https://clunkyard.com/manual#local-development) is also available.
 
-Create a bot at [clunkyard.com](https://clunkyard.com), connect your GitHub repository in My bots, select its ref and import its root. Pushes to the selected ref save a new immutable source revision and queue a build. Use real arena trials to check hosted budgets and follow the replay back to its exact revision. The desktop kit and editor use the same canonical starter/API; local CPU timing is not a substitute for hosted qualification.
+Existing generated kit checkouts can run `npx --yes @clunkyard/cli@2 migrate` after committing their work. Migration preserves robot source and refuses customized tool files. The immutable [kit.2 downloads](https://github.com/clunkyard/game-kit/releases/tag/v2.0.0-kit.2) remain available with their original tooling. Current npm tools pin those SDK 2.0.0/protocol 2 engine and SDK assets.
 
-[Choose a language](https://clunkyard.com/manual#choose-language) · [SDK and CABI](https://clunkyard.com/sdk) · [Local trials](https://clunkyard.com/sdk/local-trials) · [Game manual](https://clunkyard.com/manual)
-
-Generated from [slepp/azimuth-arena](https://github.com/slepp/azimuth-arena) at `ff21e62c8405d0d4bb789f50c322972925162702`. SDK source changes belong there; these templates share one release and are regenerated together.
+[Choose a language](https://clunkyard.com/manual#choose-language) · [SDK and C API](https://clunkyard.com/sdk) · [Local trials](https://clunkyard.com/sdk/local-trials) · [Game manual](https://clunkyard.com/manual) · [SDK source](https://github.com/clunkyard/sdk)

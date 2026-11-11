@@ -9,19 +9,21 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-24.04, macos-latest, windows-latest]
-        language: [javascript, vane, cadence, glyph]
+        language: [javascript, typescript, vane, cadence, glyph]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version: 24
           package-manager-cache: false
-      - run: node clunkyard.cjs new ${{ matrix.language }} robot
-      - run: node robot/clunkyard.cjs doctor
-      - run: node robot/clunkyard.cjs match
-      - run: node robot/clunkyard.cjs match 77 3d zero-g
+      - if: matrix.language == 'typescript'
+        run: npm install --global typescript@6.0.2 --ignore-scripts --no-audit --no-fund
+      - run: npx --yes @clunkyard/cli@2 new ${{ matrix.language }} robot
+      - run: npx --yes @clunkyard/cli@2 --project robot doctor
+      - run: npx --yes @clunkyard/cli@2 --project robot match
+      - run: npx --yes @clunkyard/cli@2 --project robot match 77 3d zero-g
   native:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
@@ -30,11 +32,11 @@ jobs:
       matrix:
         language: [c, python]
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version: 24
           package-manager-cache: false
-      - run: node clunkyard.cjs new ${{ matrix.language }} robot
-      - run: make -C robot doctor
-      - run: make -C robot match
+      - run: npx --yes @clunkyard/cli@2 new ${{ matrix.language }} robot
+      - run: npx --yes @clunkyard/cli@2 --project robot doctor
+      - run: npx --yes @clunkyard/cli@2 --project robot match
