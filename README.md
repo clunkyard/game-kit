@@ -15,11 +15,24 @@ Or clone a language starter below and run `make doctor`, `make`, `make match` an
 
 ## npm packages
 
-- [`@clunkyard/cli`](https://www.npmjs.com/package/@clunkyard/cli): shared local builds, trials and replays. Use `@2` for compatible fixes; pin `@2.0.0` or set `CLUNKYARD='npx --yes @clunkyard/cli@2.0.0'` with Make for an exact tool version.
+- [`@clunkyard/cli`](https://www.npmjs.com/package/@clunkyard/cli): shared local builds, trials and replays. Use `@2` for compatible fixes; pin `@2.1.0` or set `CLUNKYARD='npx --yes @clunkyard/cli@2.1.0'` with Make for an exact tool version.
 - [`@clunkyard/sdk`](https://www.npmjs.com/package/@clunkyard/sdk): JavaScript/TypeScript API and WebAssembly core. Node starters pin `clunkyard@npm:@clunkyard/sdk@2.0.0` in ordinary package files; their existing `clunkyard` import works locally and online.
 - [`@clunkyard/git`](https://www.npmjs.com/package/@clunkyard/git): run `npm install --global @clunkyard/git@2.0.1`, then `clunkyard-git login` for your bot's [private Git remote](https://clunkyard.com/sdk/private-git).
 
-JavaScript, TypeScript and the Vane/Cadence/Glyph Node routes are portable. TypeScript uses an installed TypeScript 6+ compiler. Native SDK assets currently require Linux x86-64/glibc 2.39+ (Ubuntu 24.04+ or WSL2). Compilers are not downloaded automatically; each language guide links its official reference and prerequisites.
+JavaScript, TypeScript and the Vane/Cadence/Glyph Node routes are portable. TypeScript uses an installed TypeScript 6+ compiler. Bring your language's normal compiler or interpreter; the CLI never installs a toolchain. The [platform and toolchain guide](https://clunkyard.com/sdk/player-kit#supported-platforms) links official installation instructions and identifies supported local SDKs.
+
+## Supported local platforms
+
+The current native SDK qualifications are:
+
+| Platform | Qualified local language SDKs |
+| --- | --- |
+| Linux x86-64, glibc 2.39+ (Ubuntu 24.04+ or WSL2) | Existing Linux language cohort listed below |
+| macOS, Apple Silicon (arm64) | C, C++, Python, Rust, Ruby, Swift, Java and C# |
+| macOS, Intel (x86-64) | C, C++, Python and Rust |
+| Windows x64, native MSVC-compatible toolchains | C, C++, Python, Rust and C# |
+
+The 56-language table below is the starter catalogue, rather than a claim that every SDK and toolchain runs on every operating system. Check the [supported-platform guide](https://clunkyard.com/sdk/player-kit#supported-platforms) before choosing a local setup. If a language's toolchain or SDK is unavailable on your platform, use Clunkyard's hosted builds and trials, or another supported setup such as WSL2.
 
 ## Language starters
 
@@ -91,6 +104,6 @@ npx --yes @clunkyard/cli@2 match 77 3d zero-g
 
 Keep a baseline commit and compare several seeds, contacts, battery, aim and hit rates in the replays. Use hosted trials to check arena budgets before entering tournaments. Create a bot at [clunkyard.com](https://clunkyard.com), use its private Git remote or connect your own GitHub repository in My bots. Accepted pushes save a revision and request its hosted build. [WebDAV](https://clunkyard.com/manual#local-development) is also available.
 
-Existing generated kit checkouts can run `npx --yes @clunkyard/cli@2 migrate` after committing their work. Migration preserves robot source and refuses customized tool files. The immutable [kit.2 downloads](https://github.com/clunkyard/game-kit/releases/tag/v2.0.0-kit.2) remain available with their original tooling. Current npm tools pin those SDK 2.0.0/protocol 2 engine and SDK assets.
+Existing generated kit checkouts can run `npx --yes @clunkyard/cli@2 migrate` after committing their work. Migration preserves robot source and refuses customized tool files. The immutable [kit.2 downloads](https://github.com/clunkyard/game-kit/releases/tag/v2.0.0-kit.2) remain available with their original tooling. [kit.3](https://github.com/clunkyard/game-kit/releases/tag/v2.0.0-kit.3) adds the qualified macOS and native Windows SDK archives and an updated shared local engine. Existing Linux SDK archive pins remain unchanged. CLI 2.1.0 selects the matching platform archive while retaining SDK 2.0.0 and protocol 2.
 
 [Choose a language](https://clunkyard.com/manual#choose-language) · [SDK and C API](https://clunkyard.com/sdk) · [Local trials](https://clunkyard.com/sdk/local-trials) · [Game manual](https://clunkyard.com/manual) · [SDK source](https://github.com/clunkyard/sdk)
