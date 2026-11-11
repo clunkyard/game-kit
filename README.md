@@ -22,34 +22,34 @@ Or clone this catalogue and run `node clunkyard.cjs new python my-robot`. `node 
 |python|[Clone or use template](https://github.com/clunkyard/starter-python)|node, make, python3|
 |c|[Clone or use template](https://github.com/clunkyard/starter-c)|node, make, cc|
 |cpp|[Clone or use template](https://github.com/clunkyard/starter-cpp)|node, make, c++|
-|go|[Clone or use template](https://github.com/clunkyard/starter-go)|node, make, go|
-|rust|[Clone or use template](https://github.com/clunkyard/starter-rust)|node, make, rustc|
+|go|[Clone or use template](https://github.com/clunkyard/starter-go)|node, make, go, cc|
+|rust|[Clone or use template](https://github.com/clunkyard/starter-rust)|node, make, rustc, cc|
 |hew|[Clone or use template](https://github.com/clunkyard/starter-hew)|node, make, hew, cc|
 |elixir|[Clone or use template](https://github.com/clunkyard/starter-elixir)|node, make, elixir, erlc, cc|
 |erlang|[Clone or use template](https://github.com/clunkyard/starter-erlang)|node, make, erl, erlc, cc|
 |csharp|[Clone or use template](https://github.com/clunkyard/starter-csharp)|node, make, dotnet|
 |fsharp|[Clone or use template](https://github.com/clunkyard/starter-fsharp)|node, make, dotnet|
 |java|[Clone or use template](https://github.com/clunkyard/starter-java)|node, make, javac, java|
-|kotlin|[Clone or use template](https://github.com/clunkyard/starter-kotlin)|node, make, kotlinc, java|
-|scala|[Clone or use template](https://github.com/clunkyard/starter-scala)|node, make, scalac, java|
-|clojure|[Clone or use template](https://github.com/clunkyard/starter-clojure)|node, make, java|
+|kotlin|[Clone or use template](https://github.com/clunkyard/starter-kotlin)|node, make, kotlinc, java, javac|
+|scala|[Clone or use template](https://github.com/clunkyard/starter-scala)|node, make, scalac, java, javac|
+|clojure|[Clone or use template](https://github.com/clunkyard/starter-clojure)|node, make, java, javac|
 |dart|[Clone or use template](https://github.com/clunkyard/starter-dart)|node, make, dart|
 |swift|[Clone or use template](https://github.com/clunkyard/starter-swift)|node, make, swiftc|
 |zig|[Clone or use template](https://github.com/clunkyard/starter-zig)|node, make, zig|
-|haskell|[Clone or use template](https://github.com/clunkyard/starter-haskell)|node, make, ghc|
-|ocaml|[Clone or use template](https://github.com/clunkyard/starter-ocaml)|node, make, ocamlopt, ocamlc|
+|haskell|[Clone or use template](https://github.com/clunkyard/starter-haskell)|node, make, ghc, cc|
+|ocaml|[Clone or use template](https://github.com/clunkyard/starter-ocaml)|node, make, ocamlopt, ocamlc, cc|
 |common-lisp|[Clone or use template](https://github.com/clunkyard/starter-common-lisp)|node, make, sbcl|
-|perl|[Clone or use template](https://github.com/clunkyard/starter-perl)|node, make, perl|
+|perl|[Clone or use template](https://github.com/clunkyard/starter-perl)|node, make, perl, cc|
 |lua|[Clone or use template](https://github.com/clunkyard/starter-lua)|node, make, lua5.4, cc, pkg-config|
 |ruby|[Clone or use template](https://github.com/clunkyard/starter-ruby)|node, make, ruby|
 |julia|[Clone or use template](https://github.com/clunkyard/starter-julia)|node, make, julia|
 |r|[Clone or use template](https://github.com/clunkyard/starter-r)|node, make, Rscript, R, cc|
 |php|[Clone or use template](https://github.com/clunkyard/starter-php)|node, make, php|
 |fortran|[Clone or use template](https://github.com/clunkyard/starter-fortran)|node, make, gfortran|
-|d|[Clone or use template](https://github.com/clunkyard/starter-d)|node, make, ldc2|
+|d|[Clone or use template](https://github.com/clunkyard/starter-d)|node, make, ldc2, cc|
 |ada|[Clone or use template](https://github.com/clunkyard/starter-ada)|node, make, gnatmake|
 |nim|[Clone or use template](https://github.com/clunkyard/starter-nim)|node, make, nim, cc|
-|mercury|[Clone or use template](https://github.com/clunkyard/starter-mercury)|node, make, mmc|
+|mercury|[Clone or use template](https://github.com/clunkyard/starter-mercury)|node, make, mmc, cc|
 |pascal|[Clone or use template](https://github.com/clunkyard/starter-pascal)|node, make, fpc|
 |basic|[Clone or use template](https://github.com/clunkyard/starter-basic)|node, make, fbc|
 |cobol|[Clone or use template](https://github.com/clunkyard/starter-cobol)|node, make, cobc|
@@ -57,14 +57,14 @@ Or clone this catalogue and run `node clunkyard.cjs new python my-robot`. `node 
 |prolog|[Clone or use template](https://github.com/clunkyard/starter-prolog)|node, make, swipl, swipl-ld|
 |chr|[Clone or use template](https://github.com/clunkyard/starter-chr)|node, make, swipl, swipl-ld|
 |clips|[Clone or use template](https://github.com/clunkyard/starter-clips)|node, make, python3|
-|minizinc|[Clone or use template](https://github.com/clunkyard/starter-minizinc)|node, make, python3, minizinc|
+|minizinc|[Clone or use template](https://github.com/clunkyard/starter-minizinc)|node, make, python3, minizinc, fzn-gecode|
 |forth|[Clone or use template](https://github.com/clunkyard/starter-forth)|node, make, python3, gforth|
 |apl|[Clone or use template](https://github.com/clunkyard/starter-apl)|node, make, python3, apl|
 |bqn|[Clone or use template](https://github.com/clunkyard/starter-bqn)|node, make, bqn|
 |shell|[Clone or use template](https://github.com/clunkyard/starter-shell)|node, make, sh, jq|
 |wat|[Clone or use template](https://github.com/clunkyard/starter-wat)|node, make, wat2wasm|
 |assemblyscript-wasm|[Clone or use template](https://github.com/clunkyard/starter-assemblyscript-wasm)|node, make, asc|
-|c-wasm|[Clone or use template](https://github.com/clunkyard/starter-c-wasm)|node, make, clang|
+|c-wasm|[Clone or use template](https://github.com/clunkyard/starter-c-wasm)|node, make, clang, wasm-ld|
 |rust-wasm|[Clone or use template](https://github.com/clunkyard/starter-rust-wasm)|node, make, rustc|
 |zig-wasm|[Clone or use template](https://github.com/clunkyard/starter-zig-wasm)|node, make, zig|
 |vane|[Clone or use template](https://github.com/clunkyard/starter-vane)|node|
@@ -76,7 +76,7 @@ Or clone this catalogue and run `node clunkyard.cjs new python my-robot`. `node 
 
 ## Releases and reproducibility
 
-Release [v2.0.0-kit.1](https://github.com/clunkyard/game-kit/releases/tag/v2.0.0-kit.1) pins SDK 2.0.0, the engine, each selected binding and checksums. Download the starter archive if you prefer not to clone. Generated downloads go under ignored `.clunkyard/`; keep source files, manifests and your own tests in Git. Compiler-sensitive bindings rebuild against the compiler you installed. Public SDK distribution is independent of your private robot source.
+Release [v2.0.0-kit.2](https://github.com/clunkyard/game-kit/releases/tag/v2.0.0-kit.2) pins SDK 2.0.0, the engine, each selected binding and checksums. Download the starter archive if you prefer not to clone. Generated downloads go under ignored `.clunkyard/`; keep source files, manifests and your own tests in Git. Compiler-sensitive bindings rebuild against the compiler you installed. Public SDK distribution is independent of your private robot source.
 
 ## Move from local trials to the arena
 
