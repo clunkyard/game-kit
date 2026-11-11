@@ -1,0 +1,40 @@
+name: Local player qualification
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  portable:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-latest, windows-latest]
+        language: [javascript, vane, cadence, glyph]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - run: node clunkyard.cjs new ${{ matrix.language }} robot
+      - run: node robot/clunkyard.cjs doctor
+      - run: node robot/clunkyard.cjs match
+      - run: node robot/clunkyard.cjs match 77 3d zero-g
+  native:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [c, python]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - run: node clunkyard.cjs new ${{ matrix.language }} robot
+      - run: make -C robot doctor
+      - run: make -C robot match
